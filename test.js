@@ -74,8 +74,8 @@ test('codepoint', function (t) {
 test('codepoint errors', function (t) {
   t.table_assert([
         [ 'src', 'off', 'lim', 'idx', 'exp' ],
-        [ [0xF7, 0xBF, 0xBF, 0xBF], 0, 3, 0, /bytes don.t fit in range: 0..3/],
-        [ [0xF7, 0xBF, 0xBF, 0xBF], 1, 4, 1, /no UTF8 starting byte in range: 1..1/]
+        [ [0xF7, 0xBF, 0xBF, 0xBF], 0, 3, 0, /bytes don.t fit in range: 0..3/ ],
+        [ [0xF7, 0xBF, 0xBF, 0xBF], 1, 4, 1, /no UTF8 starting byte in range: 1..1/ ]
   ], function (src, off, lim, idx) {
     src = typeof src === 'string' ? utf8.buffer(src) : src
     return cmp.codepoint(src, off, lim, idx)
