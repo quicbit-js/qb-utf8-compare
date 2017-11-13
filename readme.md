@@ -1,8 +1,27 @@
 # qb-utf8-compare
 
+[![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][npm-url]
+[![dependencies][proddep-image]][proddep-link]
+[![dev dependencies][devdep-image]][devdep-link]
+[![code analysis][code-image]][code-link]
+
+[npm-image]:       https://img.shields.io/npm/v/qb-utf8-compare.svg
+[downloads-image]: https://img.shields.io/npm/dm/qb-utf8-compare.svg
+[npm-url]:         https://npmjs.org/package/qb-utf8-compare
+[proddep-image]:   https://www.bithound.io/github/quicbit-js/qb-utf8-compare/badges/dependencies.svg
+[proddep-link]:    https://www.bithound.io/github/quicbit-js/qb-utf8-compare/master/dependencies/npm
+[devdep-image]:    https://www.bithound.io/github/quicbit-js/qb-utf8-compare/badges/devDependencies.svg
+[devdep-link]:     https://www.bithound.io/github/quicbit-js/qb-utf8-compare/master/dependencies/npm
+[code-image]:      https://www.bithound.io/github/quicbit-js/qb-utf8-compare/badges/code.svg
+[code-link]:       https://www.bithound.io/github/quicbit-js/qb-utf8-compare
+
 Compare selections of UTF8 bytes directly and without creating javascript strings.  
 
 This is significantly more efficient than using strings for long or large numbers of buffer selections.
+
+**Complies with the 100% test coverage and minimum dependency requirements** of 
+[qb-standard](http://github.com/quicbit-js/qb-standard) . 
 
 # Install:
 
