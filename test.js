@@ -78,8 +78,7 @@ test('codepoint errors', function (t) {
         [ [0xF7, 0xBF, 0xBF, 0xBF], 1, 4, 1, /no UTF8 starting byte in range: 1..1/]
   ], function (src, off, lim, idx) {
     src = typeof src === 'string' ? utf8.buffer(src) : src
-    var cp = cmp.codepoint(src, off, lim, idx)
-    return '0x' + cp.toString(16).toUpperCase()
+    return cmp.codepoint(src, off, lim, idx)
   }, { assert: 'throws' })
 })
 
