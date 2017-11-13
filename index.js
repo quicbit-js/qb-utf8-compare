@@ -31,9 +31,11 @@ function compare (src1, off1, lim1, src2, off2, lim2) {
 function err (msg) { throw Error (msg) }
 
 // figure out the codepoint at the given index 'idx' of a UTF8 encoded character by
-//  1   finding the begining index of the character
-//  2   adding subsequent bytes
-//  if the character is not complete (outside of off/lim) throw error
+//  1   finding the index of the starting byte
+//  2   reading the supposed byte length length from the starting byte
+//  3   adding values of subsequent bytes
+//
+//  if the character is not complete (falls outside of off/lim) throw error
 function codepoint (src, off, lim, idx) {
     var i = idx
     switch (src[i] & 0xC0) {
