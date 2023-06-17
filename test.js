@@ -1,6 +1,6 @@
 // Software License Agreement (ISC License)
 //
-// Copyright (c) 2017, Matthew Voss
+// Copyright (c) 2023, Matthew Voss
 //
 // Permission to use, copy, modify, and/or distribute this software for
 // any purpose with or without fee is hereby granted, provided that the
@@ -15,7 +15,7 @@
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 var test = require('test-kit').tape()
-var utf8 = require('qb-utf8-ez')
+var str2utf8 = require('qb-utf8-from-str-tiny')
 var cmp = require('.')
 
 test('codepoint', function (t) {
@@ -65,7 +65,7 @@ test('codepoint', function (t) {
         [ '吃飲', 0, 6, 5, '0x98F2' ]
 
   ], function (src, off, lim, idx) {
-    src = typeof src === 'string' ? utf8.buffer(src) : src
+    src = typeof src === 'string' ? str2utf8(src) : src
     var cp = cmp.codepoint(src, off, lim, idx)
     return '0x' + cp.toString(16).toUpperCase()
   })
@@ -77,7 +77,7 @@ test('codepoint errors', function (t) {
         [ [0xF7, 0xBF, 0xBF, 0xBF], 0, 3, 0, /bytes don.t fit in range: 0..3/ ],
         [ [0xF7, 0xBF, 0xBF, 0xBF], 1, 4, 1, /no UTF8 starting byte in range: 1..1/ ]
   ], function (src, off, lim, idx) {
-    src = typeof src === 'string' ? utf8.buffer(src) : src
+    src = typeof src === 'string' ? str2utf8(src) : src
     return cmp.codepoint(src, off, lim, idx)
   }, { assert: 'throws' })
 })
@@ -103,7 +103,7 @@ test('compare', function (t) {
         [ '吃飲，好吃!', 0, 15, '吃飲，好吃', 0, 16, -1 ]
 
   ], function (src1, off1, lim1, src2, off2, lim2) {
-    return cmp(utf8.buffer(src1), off1, lim1, utf8.buffer(src2), off2, lim2)
+    return cmp(str2utf8(src1), off1, lim1, str2utf8(src2), off2, lim2)
   })
 })
 
@@ -113,6 +113,6 @@ test('compare errors', function (t) {
         [ 'abcd', 0, 0, 'abcd', 0, 4, /bad range/ ]
 
   ], function (src1, off1, lim1, src2, off2, lim2) {
-    return cmp(utf8.buffer(src1), off1, lim1, utf8.buffer(src2), off2, lim2)
+    return cmp(str2utf8(src1), off1, lim1, str2utf8(src2), off2, lim2)
   }, { assert: 'throws' })
 })
